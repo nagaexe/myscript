@@ -1,0 +1,31 @@
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
+  <script type="text/javascript" src="https://dl.dropbox.com/u/59384927/jquery/AJAX/PeriodicalUpdater/jquery.periodicalupdater.js"></script>
+</head>
+<body>
+  <div id="div1022"></div>
+
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $.PeriodicalUpdater(periodSetting('?oepn'),function(data){});
+  });
+
+  $(window).on('focus', function(){
+    $.PeriodicalUpdater(periodSetting('?focus'),function(data){});
+  }).on('blur', function(e){
+    e.preventDefault();
+		clearTimeout(PeriodicalTimer);
+  });
+
+  function periodSetting(params) {
+    return {
+        url: 'http://dxp.dip.jp/time.php' + params,
+        minTimeout: 6000,
+        method: "get"
+    }
+  }
+  </script>
+
+</body>
+</html>
